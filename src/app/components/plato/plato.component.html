@@ -1,11 +1,36 @@
-<mat-card *ngFor="let plato of platos" fxLayout="column" fxLayoutAlign="center center">
+<mat-accordion *ngFor="let plato of platos">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{plato.nombre}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{plato.descripcion}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card fxLayout="column" fxLayoutAlign="center center">
+            <mat-card-content>
+                <img mat-card-lg-image [src]="plato.imagen" style="cursor:pointer" (click)="showDetails()"> 
+            </mat-card-content>
+            <mat-card-actions>
+                <mat-chip-list>
+                    <mat-chip color="primary" selected *ngFor="let ingrediente of plato.ingredientes">{{ingrediente.nombre}}</mat-chip>
+                </mat-chip-list>
+            </mat-card-actions>
+            <mat-card-footer style="margin-bottom: 2px">
+                <mat-chip color="warn" selected >$ {{plato.precio | number : '1.2-2'}}</mat-chip>
+            </mat-card-footer>
+        </mat-card>
+    </mat-expansion-panel>
+</mat-accordion>
+<!--mat-card *ngFor="let plato of platos" fxLayout="column" fxLayoutAlign="center center">
     <mat-card-title> {{plato.nombre}} </mat-card-title>
     <mat-card-subtitle> {{plato.descripcion}}	</mat-card-subtitle>
     <mat-card-content>
-        <img mat-card-lg-image [src]="plato.imagen"> 
+        <img mat-card-lg-image [src]="plato.imagen" style="cursor:pointer" (click)="showDetails()"> 
     </mat-card-content>
     <mat-card-actions> 
-        <button mat-raised-button color="primary" *ngFor="let ingrediente of plato.ingredientes">{{ingrediente.nombre}}</button>
+        <button disabled mat-raised-button color="primary" *ngFor="let ingrediente of plato.ingredientes">{{ingrediente.nombre}}</button>
     </mat-card-actions>
     <mat-card-footer> {{plato.precio}} </mat-card-footer>
-</mat-card>
+</mat-card-->

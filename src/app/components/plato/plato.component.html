@@ -1,0 +1,11 @@
+<mat-card *ngFor="let plato of platos" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-title> {{plato.nombre}} </mat-card-title>
+    <mat-card-subtitle> {{plato.descripcion}}	</mat-card-subtitle>
+    <mat-card-content>
+        <img mat-card-lg-image [src]="plato.imagen"> 
+    </mat-card-content>
+    <mat-card-actions> 
+        <button mat-raised-button color="primary" *ngFor="let ingrediente of plato.ingredientes">{{ingrediente.nombre}}</button>
+    </mat-card-actions>
+    <mat-card-footer> {{plato.precio}} </mat-card-footer>
+</mat-card>

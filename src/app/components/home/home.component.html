@@ -1,0 +1,40 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="example-app-name">Menús</h1>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" opened>
+        <mat-nav-list>
+          <a mat-list-item routerLink="." *ngFor="let nav of fillerNav" (click)="showList(nav.id)">{{nav.descripcion}}</a>
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content style="padding-left: 10px;" fxLayout="column">
+        <mat-card 
+          *ngIf="!(platos && platos.length > 0) && !(menus && menus.length > 0)" 
+          fxLayout="column" 
+          fxLayoutAlign="center center">
+            <mat-card-title> Menú </mat-card-title>
+            <mat-card-subtitle> Bienvenido a su Menú!	</mat-card-subtitle>
+            <mat-card-content>
+              <img mat-card-lg-image src="/assets/img/menu/menu-inicio.jpg"> 
+            </mat-card-content>
+            <!--mat-card-actions> </mat-card-actions-->
+            <mat-card-footer> Seleccione una categoría de la lista. </mat-card-footer>
+        </mat-card>
+        <app-plato 
+          fxLayoutAlign="start"
+          *ngIf="(platos && platos.length > 0)"
+          [platoList]="platos">
+        </app-plato>
+        <app-menu
+          *ngIf="(menus && menus.length > 0)"
+          [menuList]="menus">
+        </app-menu>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
